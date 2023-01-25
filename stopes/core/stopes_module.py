@@ -30,7 +30,7 @@ logging.basicConfig(
 @dataclasses.dataclass
 class Requirements:
     nodes: int = 1
-    mem_gb: tp.Optional[int] = None
+    mem_per_cpu: tp.Optional[int] = None
     tasks_per_node: int = 1
     gpus_per_node: int = 0
     cpus_per_task: int = 5
