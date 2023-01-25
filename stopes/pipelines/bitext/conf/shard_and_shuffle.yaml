@@ -9,5 +9,5 @@ log_every: 10000
 tmp_dir: /scratch/slurm_tmpdir/
 
 num_cpu: 80
-mem_gb: null
+mem_per_cpu: null
 timeout_min: 1440

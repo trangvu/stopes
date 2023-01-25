@@ -64,7 +64,7 @@ lid:
 preprocess_buffer_size: 10_000
 preproces_requirements:
   nodes: 1
-  mem_gb: 200
+  mem_per_cpu: 200
   tasks_per_node: 1
   gpus_per_node: 0
   cpus_per_task: 40

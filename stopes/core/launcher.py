@@ -145,7 +145,7 @@ class Launcher:
         log_folder: tp.Union[Path, str] = Path("executor_logs"),
         cluster: str = "local",
         partition: tp.Optional[str] = None,
-        supports_mem_spec: bool = True,  # some slurm clusters do not support mem_gb, if you set this to False, the Requirements.mem_gb coming from the module will be ignored
+        supports_mem_spec: bool = True,  # some slurm clusters do not support mem_per_cpu, if you set this to False, the Requirements.mem_gb coming from the module will be ignored
         disable_tqdm: bool = False,  # if you don't want tqdm progress bars
         max_retries: int = 0,
         max_jobarray_jobs: int = 1000,
@@ -247,8 +247,8 @@ class Launcher:
                 "timeout_min": reqs.timeout_min,
             }
             executor.update_parameters(**mapped_reqs)
-            if hasattr(reqs, "mem_gb") and self.supports_mem_spec:
-                executor.update_parameters(mem_gb=reqs.mem_gb)
+            if hasattr(reqs, "mem_per_cpu") and self.supports_mem_spec:
+                executor.update_parameters(mem_per_cpu=reqs.mem_per_cpu)
             if hasattr(reqs, "contraints"):
                 executor.update_parameters(slurm_constraint=reqs.constraint)
 

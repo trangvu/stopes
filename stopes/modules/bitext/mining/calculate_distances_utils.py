@@ -131,7 +131,7 @@ def compute_distances(
                         # batch_size is bigger than available lines
                         # let's resize the buffer
                         batch_size = total_lines - lines_processed
-                        data_buffer.resize((batch_size, embedding_dimensions))
+                        data_buffer.resize((batch_size, embedding_dimensions), refcheck=False)
 
                     start = lines_processed
                     end = lines_processed + batch_size

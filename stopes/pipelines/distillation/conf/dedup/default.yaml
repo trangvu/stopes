@@ -9,7 +9,7 @@ tmp_dir: ${tmp_dir}
 merge_dir: ${merge_dir}
 
 num_cpu: 40
-mem_gb: 300
+mem_per_cpu: 300
 timeout_min: 1440
 
 num_files: 10 # merges this number of files at a time

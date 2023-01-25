@@ -6,7 +6,7 @@ defaults:
 tmp_dir: /scratch/slurm_tmpdir/
 
 num_cpu: 40
-mem_gb: 300
+mem_per_cpu: 300
 timeout_min: 14400
 
 output_file: ???

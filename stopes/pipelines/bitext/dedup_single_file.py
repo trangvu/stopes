@@ -29,7 +29,7 @@ class DedupConfig:
     output_file: str = MISSING
     input_file: str = MISSING
     num_cpu: int = 40
-    mem_gb: int = 300
+    mem_per_cpu: int = 300
     timeout_min: int = 14400
     tmp_dir: str = "/tmp"
     field_def: str = "6"
@@ -46,7 +46,7 @@ async def launch_dedup(
                 "output_file": str(output_file),
                 "num_cpu": config.num_cpu,
                 "timeout_min": int(config.timeout_min),
-                "mem_gb": config.mem_gb,
+                "mem_per_cpu": config.mem_per_cpu,
                 "tmp_dir": config.tmp_dir,
                 "field_def": config.field_def,
                 "do_local_dedup": True,
