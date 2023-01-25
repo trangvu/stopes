@@ -46,7 +46,7 @@ calculate_distances:
     gpu_type: "fp16-shard"  # don't use gpu
 
 merge_indexes:
-  requirements:
+  config:
     nodes: 1
     tasks_per_node: 1
     gpus_per_node: 0

@@ -54,11 +54,11 @@ class MergeFAISSIndexesModule(StopesModule):
 
     def requirements(self):
         return Requirements(
-            nodes=1,
-            tasks_per_node=1,
-            gpus_per_node=0,
-            cpus_per_task=10,
-            timeout_min=1000,
+            nodes=getattr(self.config, "nodes", 1),
+            tasks_per_node=getattr(self.config, "tasks_per_node", 1),
+            gpus_per_node=getattr(self.config, "gpus_per_node", 0),
+            cpus_per_task=getattr(self.config, "cpus_per_task", 10),
+            timeout_min=getattr(self.config, "timeout_min", 1000),
         )
 
     def run(
