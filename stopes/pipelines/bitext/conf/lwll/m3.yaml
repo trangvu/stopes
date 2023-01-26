@@ -291,6 +291,13 @@ data:
   # info
   nl_file_template: "{lang}.nl"
 
+embed_text:
+  config:
+    encoder:
+      encoder_model: ${model_dir}/laser2.pt
+      spm_model: ${model_dir}/laser2.spm
+      spm_vocab: ${model_dir}/laser2.cvocab
+
 # for each language we support, specify where the laser encoder is and where the
 # spm model/vocab can be found. In our case, we have custom laser2/3 encoders
 # for all languages. But for most languages we reuse the same spm/vocab, so we
