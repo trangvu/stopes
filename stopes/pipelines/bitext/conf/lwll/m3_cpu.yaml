@@ -9,7 +9,7 @@ launcher:
   # setup, in which case paralell jobs will be submitted when possible.
   cluster: slurm
   # we don't need to set this if we aren't using slurm
-  partition: m3g
+  partition: null
   # To improve resilience and make iteration faster, stopes caches the results of
   # each steps of the pipeline. Set a fixed directory here if you want to
   # leverage caching.
@@ -31,7 +31,7 @@ vocab_dir: ${data_dir}/models/wmt22
 # it a lot faster, but if you don't have one, it's ok.
 populate_index:
   config:
-    use_gpu: True
+    use_gpu: False
     num_cpu: 4
 
 embedding_sample:
@@ -39,22 +39,22 @@ embedding_sample:
 
 train_index:
   config:
-    use_gpu: True
+    use_gpu: False
     num_cpu: 4
 
 calculate_distances:
   config:
     gpu_memory_gb: 16
-    gpu_type: "fp16-shard"  # don't use gpu
+    gpu_type: ""  # don't use gpu
 
 mine_indexes:
   config:
     requirements:
       nodes: 1
       tasks_per_node: 1
-      gpus_per_node: 1
-      cpus_per_task: 4
-      timeout_min: 10000
+      gpus_per_node: 0
+      cpus_per_task: 10
+      timeout_min: 2000
     mine_threshold: 0.5
 
 mine_sentences:
@@ -62,10 +62,34 @@ mine_sentences:
     requirements:
       nodes: 1
       tasks_per_node: 1
-      gpus_per_node: 1
-      cpus_per_task: 4
-      timeout_min: 10000
+      gpus_per_node: 0
+      cpus_per_task: 10
+      timeout_min: 2000
     mine_threshold: 0.5
+
+sharded_langs:
+  eng:
+    - eng000
+    - eng001
+  nld:
+    - nld000
+    - nld001
+  bul:
+    - bul000
+    - bul001
+  ind:
+    - ind000
+    - ind001
+  slk:
+    - slk000
+    - slk001
+  spa:
+    - spa000
+    - spa001
+  por:
+    - por000
+    - por001
+
 
 # Provides info about the data. A lot of this is used to generate nice output
 # file names.
@@ -270,4 +294,3 @@ lang_configs:
     encoder_model: ${model_dir}/laser3-uig.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
-

@@ -171,6 +171,7 @@ def mine(
     # extracting bitexts
     # TODO: add dedup logic if we need it
     nb_total_bitexts = fastmax_neighbors.dists.shape[0]
+    print(f"Total bitext {len(nb_total_bitexts)}")
     pos = 0
     dists = np.empty(nb_total_bitexts, dtype=np.float32)
     src_idx = np.empty(nb_total_bitexts, dtype=np.uint32)

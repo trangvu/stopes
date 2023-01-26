@@ -53,6 +53,27 @@ merge_indexes:
     cpus_per_task: 10
     timeout_min: 1000
 
+mine_indexes:
+  config:
+    requirements:
+      nodes: 1
+      tasks_per_node: 1
+      gpus_per_node: 1
+      cpus_per_task: 4
+      timeout_min: 600
+    mine_threshold: 0.1
+
+mine_sentences:
+  config:
+    requirements:
+      nodes: 1
+      tasks_per_node: 1
+      gpus_per_node: 1
+      cpus_per_task: 4
+      timeout_min: 600
+    mine_threshold: 0.1
+
+
 # Provides info about the data. A lot of this is used to generate nice output
 # file names.
 data:

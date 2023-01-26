@@ -216,9 +216,13 @@ class GlobalMiningPipeline:
             glob_with_replacement = self.config.data.meta_glob.format(lang=lang)
             meta_shards = sorted(glob.glob(glob_with_replacement), key=extract_shard_id)
         logger.info(f"for {lang}, meta shards are {meta_shards}")
-
+        orig_l = re.match("([a-zA-Z]+)\d+", lang)
+        if orig_l:
+            orig_lang = orig_l[1]
+        else:
+            orig_lang = lang
         lng = Lang(
-            lang_name=lang,
+            lang_name=orig_lang,
             split_name=lang,
             data_shards=data_shards,
             meta_shards=meta_shards,
