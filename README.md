@@ -40,7 +40,7 @@ You can then install stopes with pip:
 ```
 git clone https://github.com/facebookresearch/stopes.git
 cd stopes
-pip install -e '.[dev,mono,mining]'
+pip install -e '.[dev,mono,mining,mining-gpu]'
 ```
 
 You can choose what to install. If you are only interested in `mining`, you do not need to install `dev`, and `mono`. If you are interested in the distillation pipeline, you will need to install at least `mono`. `mining` will install the cpu version of the dependencies for mining, if you want to do mining on gpu, and your system is compatible, you can install `[mining,mining-gpu]`.

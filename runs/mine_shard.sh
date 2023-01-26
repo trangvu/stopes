@@ -3,8 +3,8 @@
 #SBATCH --account=da33
 #SBATCH --ntasks=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=4
-#SBATCH --mem-per-cpu=5000
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=10000
 #SBATCH --partition=comp
 #SBATCH --time=7-00:00:00
 #SBATCH --mail-type=BEGIN,END,FAIL
@@ -12,8 +12,16 @@
 #SBATCH --output=%x-%j.out
 #SBATCH --error=%x-%j.err
 
+if [ "$#" -lt 2 ]; then
+   echo "Mine using a shard_langs config file"
+   echo "Usage: $0 <src> <shard_name>"
+   exit 1
+fi
+
 src=$1
 tgt=eng
+shard_name=$2
+MAIN_CONF=m3_cpu
 
 DATA_DIR=/scratch/ry10/oscar/split-oscar
 OUT_DIR=/scratch/ry10/oscar/mining-outputs
@@ -23,7 +31,4 @@ module load python/3.8.5-gcc8-static
 ENV_DIR=/scratch/da33/jinming/nllb/env
 source $ENV_DIR/bin/activate
 
-mkdir -p $OUT_DIR
-mkdir -p $TMP_DIR
-
-python -m stopes.pipelines.bitext.global_mining_pipeline src_lang=$src tgt_lang=$tgt data_dir=$DATA_DIR tmp_dir=$TMP_DIR +lwll=m3_cpu output_dir=$OUT_DIR embed_text=laser3
+python -m stopes.pipelines.bitext.global_mining_pipeline src_lang=$src tgt_lang=$tgt data_dir=$DATA_DIR tmp_dir=$TMP_DIR +lwll=$MAIN_CONF +lwll/shard_langs=$SHARD_NAME output_dir=$OUT_DIR embed_text=laser3
