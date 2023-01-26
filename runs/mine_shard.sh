@@ -20,7 +20,7 @@ fi
 
 src=$1
 tgt=eng
-shard_name=$2
+SHARD_NAME=$2
 MAIN_CONF=m3_cpu
 
 DATA_DIR=/scratch/ry10/oscar/split-oscar
@@ -30,5 +30,5 @@ module load cuda/11.3
 module load python/3.8.5-gcc8-static
 ENV_DIR=/scratch/da33/jinming/nllb/env
 source $ENV_DIR/bin/activate
-
+export LD_LIBRARY_PATH=/fs03/da33/jinming/nllb/env/lib/python3.8/site-packages/nvidia/cublas/lib:$LD_LIBRARY_PATH
 python -m stopes.pipelines.bitext.global_mining_pipeline src_lang=$src tgt_lang=$tgt data_dir=$DATA_DIR tmp_dir=$TMP_DIR +lwll=$MAIN_CONF +lwll/shard_langs=$SHARD_NAME output_dir=$OUT_DIR embed_text=laser3

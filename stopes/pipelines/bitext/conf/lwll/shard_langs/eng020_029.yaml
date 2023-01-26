@@ -1,0 +1,13 @@
+# @package _global_
+sharded_langs:
+  eng:
+    - eng020
+    - eng021
+    - eng022
+    - eng023
+    - eng024
+    - eng025
+    - eng026
+    - eng027
+    - eng028
+    - eng029

@@ -22,8 +22,9 @@ module load cuda/11.3
 module load python/3.8.5-gcc8-static
 ENV_DIR=/scratch/da33/jinming/nllb/env
 source $ENV_DIR/bin/activate
+export LD_LIBRARY_PATH=/fs03/da33/jinming/nllb/env/lib/python3.8/site-packages/nvidia/cublas/lib:$LD_LIBRARY_PATH
 
 mkdir -p $OUT_DIR
 mkdir -p $TMP_DIR
 
-python -m stopes.pipelines.bitext.global_mining_pipeline src_lang=$src tgt_lang=$tgt data_dir=$DATA_DIR tmp_dir=$TMP_DIR +lwll=m3_cpu output_dir=$OUT_DIR embed_text=laser3
+python -m stopes.pipelines.bitext.global_mining_pipeline src_lang=$src tgt_lang=$tgt data_dir=$DATA_DIR tmp_dir=$TMP_DIR +lwll=m3 output_dir=$OUT_DIR embed_text=laser3
