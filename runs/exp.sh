@@ -8,12 +8,21 @@ for idx in `seq 200 299`; do
   xz eng$idx
 done
 
-l=nld
-for idx in `seq -f%03g 0 58`; do
+l=eng
+for idx in `seq -f%03g 200 221`; do
+  echo 5000000 > ${l}${idx}.nl
+done
+
+l=eng
+for idx in `seq -f%03g 50 221`; do
   mv ${l}${idx}.nl ${l}${idx}.tmp
   cut -f 1 -d' '  ${l}${idx}.tmp > ${l}${idx}.nl
   rm -f ${l}${idx}.tmp
 done
+
+kam
+fuv
+l=kam && mv ${l}.nl ${l}.tmp && cut -f 1 -d' '  ${l}.tmp > ${l}.nl && rm -f ${l}.tmp
 ### Submit shard
 src=amh
 shard=eng000_009
