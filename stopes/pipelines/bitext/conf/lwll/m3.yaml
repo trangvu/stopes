@@ -33,6 +33,12 @@ populate_index:
   config:
     use_gpu: True
     num_cpu: 4
+    requirements:
+      nodes: 1
+      tasks_per_node: 1
+      gpus_per_node: 1
+      cpus_per_task: 4
+      mem_per_cpu: 10000
 
 embedding_sample:
   sample_shards: False
@@ -41,6 +47,13 @@ train_index:
   config:
     use_gpu: True
     num_cpu: 4
+    requirements:
+      nodes: 1
+      tasks_per_node: 1
+      gpus_per_node: 1
+      cpus_per_task: 4
+      mem_per_cpu: 20000
+      timeout_min: 1000
 
 calculate_distances:
   config:
@@ -56,7 +69,7 @@ mine_indexes:
       cpus_per_task: 10
       mem_per_cpu: 6000
       timeout_min: 10000
-    mine_threshold: 0.5
+    #mine_threshold: 1.04
 
 mine_sentences:
   config:
@@ -321,47 +334,43 @@ lang_configs:
     spm_model: ${model_dir}/laser2.spm
     spm_vocab: ${model_dir}/laser2.cvocab
   amh:
-    encoder_model: ${model_dir}/laser3-amh.v1.pt
-    spm_model: ${model_dir}/laser3-amh.v1.spm
-    spm_vocab: ${model_dir}/laser3-amh.v1.cvocab
-  am:
-    encoder_model: ${model_dir}/laser3-amh.v1.pt
-    spm_model: ${model_dir}/laser3-amh.v1.spm
-    spm_vocab: ${model_dir}/laser3-amh.v1.cvocab
+    encoder_model: ${model_dir}/laser3-amh_Ethi.v1.pt
+    spm_model: ${model_dir}/laser3-amh_Ethi.v1.spm
+    spm_vocab: ${model_dir}/laser3-amh_Ethi.v1.cvocab
   fuv:
-    encoder_model: ${model_dir}/laser3-fuv.v1.pt
-    spm_model: ${model_dir}/laser3-fuv.v1.spm
-    spm_vocab: ${model_dir}/laser3-fuv.v1.cvocab
+    encoder_model: ${model_dir}/laser3-fuv_Latn.v1.pt
+    spm_model: ${model_dir}/laser3-fuv_Latn.v1.spm
+    spm_vocab: ${model_dir}/laser3-fuv_Latn.v1.cvocab
   hau:
-    encoder_model: ${model_dir}/laser3-hau.v1.pt
+    encoder_model: ${model_dir}/laser3-hau_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   ibo:
-    encoder_model: ${model_dir}/laser3-ibo.v1.pt
+    encoder_model: ${model_dir}/laser3-ibo_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   kam:
-    encoder_model: ${model_dir}/laser3-kam.v1.pt
+    encoder_model: ${model_dir}/laser3-kam_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   lin:
-    encoder_model: ${model_dir}/laser3-lin.v1.pt
+    encoder_model: ${model_dir}/laser3-lin_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   lug:
-    encoder_model: ${model_dir}/laser3-lug.v1.pt
+    encoder_model: ${model_dir}/laser3-lug_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   luo:
-    encoder_model: ${model_dir}/laser3-luo.v1.pt
+    encoder_model: ${model_dir}/laser3-luo_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   nso:
-    encoder_model: ${model_dir}/laser3-nso.v1.pt
+    encoder_model: ${model_dir}/laser3-nso_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   nya:
-    encoder_model: ${model_dir}/laser3-nya.v1.pt
+    encoder_model: ${model_dir}/laser3-nya_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   orm:
@@ -369,130 +378,130 @@ lang_configs:
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   sna:
-    encoder_model: ${model_dir}/laser3-sna.v1.pt
+    encoder_model: ${model_dir}/laser3-sna_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   ssw:
-    encoder_model: ${model_dir}/laser3-ssw.v1.pt
+    encoder_model: ${model_dir}/laser3-ssw_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   swh:
-    encoder_model: ${model_dir}/laser3-swh.v1.pt
+    encoder_model: ${model_dir}/laser3-swh_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   sqi:
-    encoder_model: ${model_dir}/laser3-als.v1.pt
+    encoder_model: ${model_dir}/laser3-als_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   tsn:
-    encoder_model: ${model_dir}/laser3-tsn.v1.pt
+    encoder_model: ${model_dir}/laser3-tsn_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   tso:
-    encoder_model: ${model_dir}/laser3-tso.v1.pt
+    encoder_model: ${model_dir}/laser3-tso_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   umb:
-    encoder_model: ${model_dir}/laser3-umb.v1.pt
+    encoder_model: ${model_dir}/laser3-umb_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   wol:
-    encoder_model: ${model_dir}/laser3-wol.v1.pt
+    encoder_model: ${model_dir}/laser3-wol_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   xho:
-    encoder_model: ${model_dir}/laser3-xho.v1.pt
+    encoder_model: ${model_dir}/laser3-xho_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   yor:
-    encoder_model: ${model_dir}/laser3-yor.v1.pt
+    encoder_model: ${model_dir}/laser3-yor_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   zul:
-    encoder_model: ${model_dir}/laser3-zul.v1.pt
+    encoder_model: ${model_dir}/laser3-zul_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   bak:
-    encoder_model: ${model_dir}/laser3-bak.v1.pt
-    spm_model: ${model_dir}/laser3-bak.v1.spm
-    spm_vocab: ${model_dir}/laser3-bak.v1.cvocab
+    encoder_model: ${model_dir}/laser3-bak_Cyrl.v1.pt
+    spm_model: ${model_dir}/laser3-bak_Cyrl.v1.spm
+    spm_vocab: ${model_dir}/laser3-bak_Cyrl.v1.cvocab
   bel:
-    encoder_model: ${model_dir}/laser3-bel.v1.pt
-    spm_model: ${model_dir}/laser3-bel.v1.spm
-    spm_vocab: ${model_dir}/laser3-bel.v1.cvocab
+    encoder_model: ${model_dir}/laser3-bel_Cyrl.v1.pt
+    spm_model: ${model_dir}/laser3-bel_Cyrl.v1.spm
+    spm_vocab: ${model_dir}/laser3-bel_Cyrl.v1.cvocab
   ben:
-    encoder_model: ${model_dir}/laser3-ben.v1.pt
+    encoder_model: ${model_dir}/laser3-ben_Beng.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   ceb:
-    encoder_model: ${model_dir}/laser3-ceb.v1.pt
+    encoder_model: ${model_dir}/laser3-ceb_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   cym:
-    encoder_model: ${model_dir}/laser3-cym.v1.pt
+    encoder_model: ${model_dir}/laser3-cym_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   guj:
-    encoder_model: ${model_dir}/laser3-guj.v1.pt
+    encoder_model: ${model_dir}/laser3-guj_Gujr.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   hin:
-    encoder_model: ${model_dir}/laser3-hin.v1.pt
+    encoder_model: ${model_dir}/laser3-hin_Deva.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   ind:
-    encoder_model: ${model_dir}/laser3-ind.v1.pt
+    encoder_model: ${model_dir}/laser3-ind_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   kaz:
-    encoder_model: ${model_dir}/laser3-kaz.v1.pt
-    spm_model: ${model_dir}/laser3-kaz.v1.spm
-    spm_vocab: ${model_dir}/laser3-kaz.v1.cvocab
+    encoder_model: ${model_dir}/laser3-kaz_Cyrl.v1.pt
+    spm_model: ${model_dir}/laser3-kaz_Cyrl.v1.spm
+    spm_vocab: ${model_dir}/laser3-kaz_Cyrl.v1.cvocab
   khm:
-    encoder_model: ${model_dir}/laser3-khm.v1.pt
-    spm_model: ${model_dir}/laser3-khm.v1.spm
-    spm_vocab: ${model_dir}/laser3-khm.v1.cvocab
-  kir:
-    encoder_model: ${model_dir}/laser3-kir.v1.pt
-    spm_model: ${model_dir}/laser3-kir.v1.spm
-    spm_vocab: ${model_dir}/laser3-kir.v1.cvocab
-  mal:
-    encoder_model: ${model_dir}/laser3-mal.v1.pt
-    spm_model: ${model_dir}/laser3-mal.v1.spm
-    spm_vocab: ${model_dir}/laser3-mal.v1.cvocab
-  mya:
-    encoder_model: ${model_dir}/laser3-mya.v1.pt
-    spm_model: ${model_dir}/laser3-mya.v1.spm
-    spm_vocab: ${model_dir}/laser3-mya.v1.cvocab
-  mar:
-    encoder_model: ${model_dir}/laser3-mar.v1.pt
-    spm_model: ${model_dir}/laser3-mar.v1.spm
-    spm_vocab: ${model_dir}/laser3-mar.v1.cvocab
-  sin:
-    encoder_model: ${model_dir}/laser3-sin.v1.pt
+    encoder_model: ${model_dir}/laser3-khm_Khmr.v1.pt
     spm_model: ${default_spm}
-    spm_vocab:
+    spm_vocab: ${default_vocab}
+  kir:
+    encoder_model: ${model_dir}/laser3-kir_Cyrl.v1.pt
+    spm_model: ${model_dir}/laser3-kir_Cyrl.v1.spm
+    spm_vocab: ${model_dir}/laser3-kir_Cyrl.v1.cvocab
+  mal:
+    encoder_model: ${model_dir}/laser3-mal_Mlym.v1.pt
+    spm_model: ${default_spm}
+    spm_vocab: ${default_vocab}
+  mya:
+    encoder_model: ${model_dir}/laser3-mya_Mymr.v1.pt
+    spm_model: ${model_dir}/laser3-mya_Mymr.v1.spm
+    spm_vocab: ${model_dir}/laser3-mya_Mymr.v1.cvocab
+  mar:
+    encoder_model: ${model_dir}/laser3-mar_Deva.v1.pt
+    spm_model: ${default_spm}
+    spm_vocab: ${default_vocab}
+  sin:
+    encoder_model: ${model_dir}/laser3-sin_Sinh.v1.pt
+    spm_model: ${default_spm}
+    spm_vocab: ${default_vocab}
   som:
-    encoder_model: ${model_dir}/laser3-som.v1.pt
-    spm_model: ${model_dir}/laser3-som.v1.spm
-    spm_vocab: ${model_dir}/laser3-som.v1.cvocab
+    encoder_model: ${model_dir}/laser3-som_Latn.v1.pt
+    spm_model: ${default_spm}
+    spm_vocab: ${default_vocab}
   sun:
-    encoder_model: ${model_dir}/laser3-sun.v1.pt
+    encoder_model: ${model_dir}/laser3-sun_Latn.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   tgk:
-    encoder_model: ${model_dir}/laser3-tgk.v1.pt
-    spm_model: ${model_dir}/laser3-tgk.v1.spm
-    spm_vocab: ${model_dir}/laser3-tgk.v1.cvocab
+    encoder_model: ${model_dir}/laser3-tgk_Cyrl.v1.pt
+    spm_model: ${model_dir}/laser3-tgk_Cyrl.v1.spm
+    spm_vocab: ${model_dir}/laser3-tgk_Cyrl.v1.cvocab
   tha:
-    encoder_model: ${model_dir}/laser3-tha.v1.pt
+    encoder_model: ${model_dir}/laser3-tha_Thai.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   tat:
-    encoder_model: ${model_dir}/laser3-tat.v1.pt
+    encoder_model: ${model_dir}/laser3-tat_Cyrl.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}
   uig:
-    encoder_model: ${model_dir}/laser3-uig.v1.pt
+    encoder_model: ${model_dir}/laser3-uig_Arab.v1.pt
     spm_model: ${default_spm}
     spm_vocab: ${default_vocab}

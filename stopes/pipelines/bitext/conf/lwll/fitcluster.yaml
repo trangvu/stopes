@@ -31,20 +31,26 @@ vocab_dir: ${data_dir}/models/wmt22
 # it a lot faster, but if you don't have one, it's ok.
 populate_index:
   config:
-    use_gpu: False
+    use_gpu: True
     num_cpu: 4
+    requirements:
+      nodes: 1
+      tasks_per_node: 1
+      gpus_per_node: 1
+      cpus_per_task: 4
+      mem_per_cpu: 10000
 
 embedding_sample:
   sample_shards: False
 
 train_index:
   config:
-    use_gpu: False
+    use_gpu: True
     num_cpu: 4
     requirements:
       nodes: 1
       tasks_per_node: 1
-      gpus_per_node: 0
+      gpus_per_node: 1
       cpus_per_task: 4
       mem_per_cpu: 20000
       timeout_min: 1000
@@ -52,17 +58,17 @@ train_index:
 calculate_distances:
   config:
     gpu_memory_gb: 16
-    gpu_type: ""  # don't use gpu
+    gpu_type: "fp16-shard"  # don't use gpu
 
 mine_indexes:
   config:
     requirements:
       nodes: 1
       tasks_per_node: 1
-      gpus_per_node: 0
+      gpus_per_node: 1
       cpus_per_task: 10
       mem_per_cpu: 6000
-      timeout_min: 2000
+      timeout_min: 10000
     #mine_threshold: 1.04
 
 mine_sentences:
@@ -70,10 +76,10 @@ mine_sentences:
     requirements:
       nodes: 1
       tasks_per_node: 1
-      gpus_per_node: 0
+      gpus_per_node: 1
       cpus_per_task: 10
+      timeout_min: 10000
       mem_per_cpu: 6000
-      timeout_min: 2000
     #mine_threshold: 1.04
 
 sharded_langs:
@@ -311,7 +317,7 @@ embed_text:
         requirements:
           nodes: 1
           tasks_per_node: 1
-          gpus_per_node: 0
+          gpus_per_node: 1
           cpus_per_task: 4
           timeout_min: 2880
           mem_per_cpu: 15000

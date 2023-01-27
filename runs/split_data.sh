@@ -23,6 +23,6 @@ xzcat $DATA_DIR/$l.xz | cut -d$'\t' -f 6 | split -d -l $shard_size -a 3 - "${OUT
 cd $OUT_DIR
 for file in ./${l}*; do
   file_name=`basename $file`
-  wc -l $file_name > ${file_name}.nl
+  cat $file_name | wc -l > ${file_name}.nl
   xz $file_name
 done

@@ -2,7 +2,7 @@
 ## Preprocess
 ### Data split
 - Data is splitted to 5M shards
-- List of languages to split: tha, swe, spa, slk, por, nld, eng, bul, ind
+- List of languages to split: tha, swe, spa, slk, por, nld, eng, bul, ind, swh
 - Keep-as-is languages: 
 - Empty/missing: swa, sqi, bos, arg
 
@@ -20,6 +20,23 @@ SCRIPT_DIR=/scratch/ry10/oscar/scripts
 cd $SCRIPT_DIR
 ./clean_data.sh $l
 ```
+
+## Data and code structure
+### M3
+```shell
+ROOT_DIR=/scratch/ry10/oscar
+DATA_DIR=$ROOT_DIR/split-oscar
+OUT_DIR=$ROOT_DIR/mining-outputs
+TMP_DIR=$ROOT_DIR/tmp
+```
+### Fitcluster
+```shell
+ROOT_DIR=/nfsdata/data/lwll/nllb
+DATA_DIR=$ROOT_DIR/split-oscar
+OUT_DIR=$ROOT_DIR/mining-outputs
+TMP_DIR=$ROOT_DIR/tmp
+```
+
 ## Mining
 Mining scripts can be found in `runs/mine.sh` and `runs/mine_shard.sh`. The main difference is that `mine_shard` has an option to customize the engligh subset.
 

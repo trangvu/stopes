@@ -43,3 +43,19 @@ sbatch --job-name=$src-$shard mine_shard.sh $src $shard
 src=swe
 shard=eng040_049
 sbatch --job-name=$src-$shard mine_shard.sh $src $shard
+
+
+################## Fit cluster ################
+ROOT_DIR=/nfsdata/data/lwll/nllb
+DATA_DIR=$ROOT_DIR/split-oscar
+OUT_DIR=$ROOT_DIR/mining-outputs
+TMP_DIR=$ROOT_DIR/tmp
+src=hin
+tgt=eng
+python -m stopes.pipelines.bitext.global_mining_pipeline src_lang=$src tgt_lang=$tgt data_dir=$DATA_DIR tmp_dir=$TMP_DIR +trang_test=fitcluster output_dir=$OUT_DIR embed_text=laser3
+
+xzcat /nfsdata/data/lwll/nllb/split-oscar/hin.xz | perl /nfsdata/data/lwll/nllb/stopes/stopes/modules/preprocess/moses/scripts/tokenizer/remove-non-printing-char.perl | perl /nfsdata/data/lwll/nllb/stopes/stopes/modules/preprocess/moses/scripts/tokenizer/normalize-punctuation.perl -l hi | perl /nfsdata/data/lwll/nllb/stopes/stopes/modules/preprocess/moses/scripts/tokenizer/deescape-special-chars.perl | perl /nfsdata/data/lwll/nllb/stopes/stopes/modules/preprocess/moses/scripts/tokenizer/lowercase.perl > /nfsdata/data/lwll/nllb/mining-outputs/embed.V32m/moses_preprocess/moses.000.hin
+
+src=tat
+shard=eng100_105
+sbatch --job-name=$src-$shard mine_shard.sh $src $shard

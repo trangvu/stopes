@@ -10,12 +10,12 @@ import math
 import shutil
 import typing as tp
 from pathlib import Path
-
 import numpy as np
 import submitit
 from omegaconf.omegaconf import MISSING
 
 import stopes.core
+from stopes.core import Requirements
 from stopes.core.utils import measure
 from stopes.modules.bitext.indexing.train_index import index_to_gpu
 from stopes.utils.data_utils import DataConfig
@@ -41,6 +41,17 @@ class PopulateFAISSIndexConfig:
 
     enable_checkpointing: bool = False
     data: DataConfig = MISSING
+    requirements: Requirements = dataclasses.field(
+        default=Requirements(
+            nodes=1,
+            mem_per_cpu=2000,
+            tasks_per_node=1,
+            gpus_per_node=0,
+            cpus_per_task=40,
+            timeout_min=48 * 60,
+            constraint="",
+        )
+    )
 
 
 @dataclasses.dataclass
@@ -96,11 +107,13 @@ class PopulateFAISSIndexModule(stopes.core.StopesModule):
 
     def requirements(self):
         return stopes.core.Requirements(
-            nodes=1,
-            tasks_per_node=1,
+            nodes=self.config.requirements.nodes,
+            tasks_per_node=self.config.requirements.tasks_per_node,
             gpus_per_node=1 if self.config.use_gpu else 0,
             cpus_per_task=self.config.num_cpu,
-            timeout_min=48 * 60,
+            timeout_min=self.config.requirements.timeout_min,
+            constraint=self.config.requirements.constraint,
+            mem_per_cpu=self.config.requirements.mem_per_cpu
         )
 
     def array(self):

@@ -7,7 +7,7 @@
 
 import logging
 import typing as tp
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 import numpy as np
@@ -30,6 +30,16 @@ class TrainFAISSIndexConfig:
     embedding_dimensions: int = 1024
     use_gpu: bool = True
     fp16: bool = True
+    requirements: Requirements = field(
+        default=Requirements(
+            nodes=1,
+            tasks_per_node=1,
+            gpus_per_node=0,
+            cpus_per_task=4,
+            timeout_min=1000,
+            constraint="",
+        )
+    )
 
 
 class TrainFAISSIndexModule(StopesModule):
@@ -43,14 +53,7 @@ class TrainFAISSIndexModule(StopesModule):
         logger.info(f"lang={self.config.lang}, " f"index type={self.index_type}")
 
     def requirements(self):
-        return Requirements(
-            nodes=1,
-            tasks_per_node=1,
-            gpus_per_node=1 if self.config.use_gpu else 0,
-            cpus_per_task=self.config.num_cpu,
-            timeout_min=1000,
-            constraint="ib2",
-        )
+        return self.config.requirements
 
     def run(
         self,
