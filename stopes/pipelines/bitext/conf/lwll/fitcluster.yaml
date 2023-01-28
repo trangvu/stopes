@@ -10,6 +10,7 @@ launcher:
   cluster: slurm
   # we don't need to set this if we aren't using slurm
   partition: null
+  max_jobarray_jobs: 10
   # To improve resilience and make iteration faster, stopes caches the results of
   # each steps of the pipeline. Set a fixed directory here if you want to
   # leverage caching.
