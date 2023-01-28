@@ -13,7 +13,7 @@
 - Running scripts:
   - On fitcluster: in `runs/fitcluster`
     - For fitcluster, change `MAIN_CONF` in `mine_shard.sh` to `fitcluster` or `fitcluster_A100` to switch between default and A100 partition.
-  - On m3: in `runs/fitcluster`
+  - On m3: in `runs/m3`
   - Change the email address in the script if you need to. Either create your own git branch or local commit so that later you can easily rebase any updates in main branch.
   - Create/update shard_langs config with English shards you want to work on in `stopes/pipelines/bitext/conf/lwll/shard_langs`. For example, you create a `test_shard.yaml` file in that folder with following content to work with eng200, eng201, eng200 shards
   ```yaml
@@ -65,6 +65,8 @@ requirements:
 - faiss-gpu needs to be installed with conda to be able to run on A100 GPU
 ```shell
 conda install -c pytorch faiss-gpu
+#or
+conda install -c conda-forge faiss-gpu
 ```
 ## Preprocess
 ### Data split
