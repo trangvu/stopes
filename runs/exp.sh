@@ -14,10 +14,15 @@ for idx in `seq -f%03g 200 221`; do
 done
 
 l=eng
-for idx in `seq -f%03g 50 221`; do
+for idx in `seq -f%03g 221 500`; do
   mv ${l}${idx}.nl ${l}${idx}.tmp
   cut -f 1 -d' '  ${l}${idx}.tmp > ${l}${idx}.nl
   rm -f ${l}${idx}.tmp
+done
+
+l=ara
+for idx in `seq -f%03g 0 22`; do
+  echo "- "$l$idx
 done
 
 kam
@@ -56,6 +61,10 @@ python -m stopes.pipelines.bitext.global_mining_pipeline src_lang=$src tgt_lang=
 
 xzcat /nfsdata/data/lwll/nllb/split-oscar/hin.xz | perl /nfsdata/data/lwll/nllb/stopes/stopes/modules/preprocess/moses/scripts/tokenizer/remove-non-printing-char.perl | perl /nfsdata/data/lwll/nllb/stopes/stopes/modules/preprocess/moses/scripts/tokenizer/normalize-punctuation.perl -l hi | perl /nfsdata/data/lwll/nllb/stopes/stopes/modules/preprocess/moses/scripts/tokenizer/deescape-special-chars.perl | perl /nfsdata/data/lwll/nllb/stopes/stopes/modules/preprocess/moses/scripts/tokenizer/lowercase.perl > /nfsdata/data/lwll/nllb/mining-outputs/embed.V32m/moses_preprocess/moses.000.hin
 
-src=tat
-shard=eng100_105
+src=hat
+shard=eng100_199
 sbatch --job-name=$src-$shard mine_shard.sh $src $shard
+
+src=ell
+shard=eng100_109
+sbatch --job-name=$src-$shard mine_shard_def.sh $src $shard

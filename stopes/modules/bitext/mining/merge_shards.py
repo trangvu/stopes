@@ -8,7 +8,7 @@
 import contextlib
 import logging
 import typing as tp
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 import xxhash
@@ -29,6 +29,15 @@ class MergeShardsConfig:
     # If there is no metadata, the second element of each pair should be None.
     pairs: tp.List[tp.Any]  # tp.List[tp.Tuple[Path, tp.Optional[Path]]]
     remove_tmp_files: bool = False
+    requirements: Requirements = field(
+        default=Requirements(
+            nodes=1,
+            tasks_per_node=1,
+            gpus_per_node=0,
+            cpus_per_task=4,
+            timeout_min=60 * 24,
+        )
+    )
 
 
 class ShardForMerge:
@@ -161,10 +170,4 @@ class MergeShardsModule(StopesModule):
         return "0.1"
 
     def requirements(self):
-        return Requirements(
-            nodes=1,
-            tasks_per_node=1,
-            gpus_per_node=0,
-            cpus_per_task=4,
-            timeout_min=60 * 24,
-        )
+        return self.config.requirements

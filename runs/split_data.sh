@@ -8,7 +8,7 @@
 #SBATCH --partition=comp
 #SBATCH --time=7-00:00:00
 #SBATCH --mail-type=BEGIN,END,FAIL
-#SBATCH --mail-user=vuth0001@student.monash.edu
+#SBATCH --mail-user=trang.vu1@monash.edu
 #SBATCH --output=%x-%j.out
 #SBATCH --error=%x-%j.err
 
